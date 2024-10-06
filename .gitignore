@@ -1,0 +1,15 @@
+# virtual environment
+venv/
+
+# Python Cache
+*.py[cod]
+
+#Django migrations
+*/migrations/
+
+#Database files
+*.sqlite3
+
+# environmental variables
+.env
+
