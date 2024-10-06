@@ -9,8 +9,8 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
     movie_title = models.CharField(max_length=255)
     review_content = models.TextField()
-    rating = models.PositiveSmallIntegerField()
+    rating = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.movie.title} review by {self.user.username}"
+        return f"{self.movie_title} review by {self.user.username}"
