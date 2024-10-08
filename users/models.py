@@ -6,7 +6,7 @@ class UserProfile(models.Model):
     """
     Profiles for the User Model
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField(null=True, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pic')
 

@@ -8,4 +8,7 @@ urlpatterns = [
     path('api/reviews/<int:pk>/', review_views.ReviewDetailView.as_view(), name='review-detail'),
     path('api/reviews/<int:pk>/update/', review_views.ReviewUpdateView.as_view(), name='review-update'),
     path('api/reviews/<int:pk>/delete/', review_views.ReviewDeleteView.as_view(), name='review-delete'),
+    # likes routing
+    path('api/reviews/<int:pk>/like/', review_views.LikeAndUnlikeView.as_view(), name='review-like'),
+    path('api/reviews/<int:pk>/unlike/', review_views.LikeAndUnlikeView.as_view(), name='review-unlike'),
 ]
