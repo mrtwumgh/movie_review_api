@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from reviews.models import Review, ReviewLike
+from comments.serializers import CommentSerializer
 from reviews.utils import get_tmdb_movie_details
 
 
@@ -7,6 +8,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     movie_details = serializers.SerializerMethodField()
     like_count = serializers.IntegerField(source='likes.count', read_only=True)
+    comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Review
@@ -19,6 +21,7 @@ class ReviewSerializer(serializers.ModelSerializer):
             'created_date',
             'movie_details',
             'like_count',
+            'comments',
         ]
 
     def get_movie_details(self, obj):
