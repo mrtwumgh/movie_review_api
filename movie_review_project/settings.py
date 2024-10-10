@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'movie_review_project.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgresql://movie_review_db_smu9_user:2Cr8bGVoWwxaBi82BQOmclAx909wPFhO@dpg-cs3o6vo8fa8c73depscg-a/movie_review_db_smu9')
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
 
