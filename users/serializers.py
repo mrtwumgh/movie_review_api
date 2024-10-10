@@ -6,6 +6,9 @@ from reviews.models import Review
 from reviews.serializers import ReviewSerializer
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the User Profile Model
+    """
     class Meta:
         model = UserProfile
         fields = ['image', 'bio']

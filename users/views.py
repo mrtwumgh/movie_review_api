@@ -11,6 +11,9 @@ from reviews.permissions import IsOwnerOrReadOnly
 
 
 class UserRegistrationView(generics.CreateAPIView):
+    """
+    handles user registration, creating a user and returning a token.
+    """
     queryset = User.objects.all()
     serializer_class = RegistrationSerializer
 
@@ -26,6 +29,9 @@ class UserRegistrationView(generics.CreateAPIView):
 
 
 class UserProfileDetailView(generics.RetrieveUpdateAPIView):
+    """
+    retrieves or updates a user's profile, requiring authentication and ownership for updates.
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]

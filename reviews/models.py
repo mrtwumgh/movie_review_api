@@ -17,6 +17,9 @@ class Review(models.Model):
 
 
 class ReviewLike(models.Model):
+    """
+    This model represents a like on a review.
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='review_likes')
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='likes')
     created_at = models.DateTimeField(auto_now_add=True)

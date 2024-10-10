@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 
 
 class Comment(models.Model):
+    """
+    Represents a comment for each review.
+    """
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()

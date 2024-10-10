@@ -7,6 +7,9 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 
 class ReviewListView(generics.ListAPIView):
+    """
+    Class based view to List All Reviews
+    """
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = [permissions.AllowAny]
@@ -19,35 +22,56 @@ class ReviewListView(generics.ListAPIView):
 
 
 class ReviewCreateView(generics.CreateAPIView):
+    """
+    Class Based View to create a review
+    """
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes =[permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
+        """
+        Overrides the default perform create method to assign the user to a review
+        """
         serializer.save(user=self.request.user)
 
 
 class ReviewDetailView(generics.RetrieveAPIView):
+    """
+    Class based view to view an individual review based on the primary key
+    """
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = [permissions.AllowAny]
 
 
 class ReviewUpdateView(generics.UpdateAPIView):
+    """
+    Class Based view to update an individual review
+    """
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
 class ReviewDeleteView(generics.DestroyAPIView):
+    """
+    Class Based view to delete an individual review
+    """
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
 # Like and Unlike Views
 class LikeAndUnlikeView(views.APIView):
+    """
+    Class Based view that defines the like and unlike feature
+    """
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk):
+        """
+        Defines the like feature
+        """
         review = get_object_or_404(Review, pk=pk)
         like, created = ReviewLike.objects.get_or_create(user=request.user, review=review)
         if not created:
@@ -59,6 +83,9 @@ class LikeAndUnlikeView(views.APIView):
         }, status=status.HTTP_201_CREATED)
     
     def delete(self, request, pk):
+        """
+        Defines the unlike feature
+        """
         review = get_object_or_404(Review, pk=pk)
         like = ReviewLike.objects.filter(user=request.user, review=review)
         if like.exists():

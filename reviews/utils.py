@@ -2,12 +2,15 @@ import os
 from dotenv import load_dotenv
 import tmdbsimple
 
-
+# Load API key from environment variable
 load_dotenv()
-
 tmdbsimple.API_KEY = os.getenv('TMDB_API_KEY')
 
+
 def get_tmdb_movie_details(title):
+    """
+    Fetches details about a movie from The Movie Database (TMDb) API.
+    """
     try:
         search = tmdbsimple.Search()
         response = search.movie(query=title)
