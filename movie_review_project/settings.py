@@ -160,16 +160,11 @@ STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/staticfiles/'
 STATICFILES_STORAGE = 'movie_review_project.storage_backends.StaticStorage'
 
 
-
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 DEFAULT_FILE_STORAGE = 'movie_review_project.storage_backends.MediaStorage'
 
-if DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-else:
-    STATIC_ROOT = None
-    MEDIA_ROOT = None
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
