@@ -27,7 +27,7 @@ def get_tmdb_movie_details(title):
             }
             return movie_details
         else:
-            return {'Error': 'Movie not found'}
+            return {'Error': f"The movie '{title}' was not found in our database. It may not be listed on TMDb, but you can still write a review!"}
     except Exception as e:
         print(f"Error fetching movie details: {e}")
         return {'Error': 'Failed to fetch movie details.'}
