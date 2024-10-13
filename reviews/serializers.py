@@ -36,7 +36,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         if movie_data:
             return movie_data
         else:
-            return {'Error': 'Movie details not found'}
+            return {f"The movie '{obj.movie_title}' was not found in our database. It may not be listed on TMDb, but you can still write a review!"}
 
     def validate_rating(self, data):
         """
