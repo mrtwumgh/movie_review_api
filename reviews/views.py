@@ -14,9 +14,9 @@ class ReviewListView(generics.ListAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [permissions.AllowAny]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ['movie_title', 'rating']
+    search_fields = ['movie_title']
     ordering_fields = ['rating', 'created_date']
-    filterset_fields = ['movie_title', 'rating']
+    filterset_fields = ['movie_title', 'rating', 'username']
     ordering = ['-created_date']
 
 
