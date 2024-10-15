@@ -5,6 +5,9 @@ from reviews.permissions import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
+from reviews.filters import ReviewFilter
+
+
 
 class ReviewListView(generics.ListAPIView):
     """
@@ -14,9 +17,9 @@ class ReviewListView(generics.ListAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [permissions.AllowAny]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_class = ReviewFilter
     search_fields = ['movie_title']
     ordering_fields = ['rating', 'created_date']
-    filterset_fields = ['movie_title', 'rating', 'user__username']
     ordering = ['-created_date']
 
 
