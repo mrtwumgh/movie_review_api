@@ -10,13 +10,13 @@ class ReviewListView(generics.ListAPIView):
     """
     Class based view to List All Reviews
     """
-    queryset = Review.objects.all()
+    queryset = Review.objects.select_related("user")
     serializer_class = ReviewSerializer
     permission_classes = [permissions.AllowAny]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['movie_title']
     ordering_fields = ['rating', 'created_date']
-    filterset_fields = ['movie_title', 'rating', 'username']
+    filterset_fields = ['movie_title', 'rating', 'user__username']
     ordering = ['-created_date']
 
 
