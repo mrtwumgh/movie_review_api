@@ -38,7 +38,6 @@ cd movie-review-api`
 
 Create a `.env` file in the root directory and add the following environment variables:
 `SECRET_KEY=your-secret-key
-OMDB_API_KEY=your-omdb-api-key
 TMDB_API_KEY=your-tmdb-api-key` 
 
 -   **SECRET_KEY**: Django secret key for cryptographic signing.
